@@ -6,6 +6,8 @@ import { creatStore } from 'redux';
 import store from './store';
 import routes from './routes';
 
+require('./views/index.scss');
+
 ReactDom.render(
   <Provider store={store}>
     {routes}

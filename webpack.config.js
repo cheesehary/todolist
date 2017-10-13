@@ -10,10 +10,18 @@ module.exports = {
 	module: {
     rules: [
       {
-        use: ['babel-loader'],
+        loaders: ['babel-loader'],
         exclude: /node_modules/,
         test: /\.js$/
-      }
+			},
+			{
+				loaders: ['style-loader', 'css-loader', 'sass-loader'],
+				test: /\.scss$/
+			},
+			{
+				loaders: ['url-loader?limit=10000'],
+				test: /\.(jpe?g|png|gif|svg)$/
+			}
     ]
 	},
 	devtool: 'source-map',

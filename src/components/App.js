@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default () => (
-  <div>
-    <h1>A simple TodoList</h1>
-    <Link to="/list">Enter</Link>
+  <div className="app-bg">
+    <h1 className="app-title font-60">A simple TodoList</h1>
+    <Link className="app-enter hmiddle font-20" to="/list">Enter</Link>
   </div>
 );

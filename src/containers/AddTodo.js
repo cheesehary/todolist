@@ -28,7 +28,7 @@ class AddTodo extends Component {
 
   render() {
     return (
-      <div>
+      <div className="todo-label font-20 add">
         {this.state.adding ? (
           <AddInput value={this.state.newLabel}
                     onInput={e => this.setState({newLabel: e.target.value})}

@@ -1,11 +1,9 @@
 import React from 'react';
 
 export default ({label, done, onCheck, onDelete}) => (
-  <div>
-    <span onClick={onCheck}>{done?'Finished':'Not Done Yet'}</span>
-    &nbsp;&nbsp;&nbsp;
-    {label}
-    &nbsp;&nbsp;&nbsp;
-    <span onClick={onDelete}>Delete</span>
+  <div className="todo font-20">
+    <span className="pointer" onClick={onCheck}><img className="icon" src={`./img/${done?'done':'not_done'}.svg`} /></span>
+    <span className="todo-label">{label}</span>
+    <span className="pointer" onClick={onDelete}><img className="icon" src="./img/delete.svg" /></span>
   </div>
 );

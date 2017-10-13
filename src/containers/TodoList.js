@@ -8,7 +8,7 @@ import { getSequencedTodos } from '../selectors';
 class TodoList extends Component {
   render() {
     return (
-      <div>
+      <div className="todolist">
         {this.props.todos.map(todo => (
           <Todo key={todo.id} {...todo}
                 onCheck={() => this.props.check(todo.id)}
