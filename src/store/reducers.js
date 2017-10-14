@@ -1,30 +1,20 @@
 import { combineReducers } from 'redux';
 
-import { ADD_TODO, CHECK_TODO, DELETE_TODO } from './types';
+import { ADD_TODO, CHECK_TODO, DELETE_TODO, REQUEST_TODOS, RECEIVE_TODOS } from './types';
 
-const todos = (state = {
-  1: {
-    id: 1,
-    label: 'Get yourself familiar with TodoList',
-    done: false
-  }
-}, action) => {
-  switch (action.type) {
+const todoItems = (state = {}, action) => {
+  switch(action.type) {
     case ADD_TODO:
       return {
         ...state,
-        [action.id]: {
-          id: action.id,
-          label: action.label,
-          done: false
-        }
+        [action.id]: action.added
       };
     case CHECK_TODO:
       return {
         ...state,
         [action.id]: {
           ...state[action.id],
-          done: !state[action.id].done
+          done: action.done
         }
       };
     case DELETE_TODO:
@@ -38,6 +28,34 @@ const todos = (state = {
       return state;
   }
 };
+
+const todos = (state = {
+  loading: true,
+  items: {}
+}, action) => {
+  switch(action.type) {
+    case ADD_TODO:
+    case CHECK_TODO:
+    case DELETE_TODO:
+      return {
+        ...state,
+        items: todoItems(state.items, action)
+      };
+    case REQUEST_TODOS:
+      return {
+        ...state,
+        loading: true
+      };
+    case RECEIVE_TODOS:
+      return {
+        ...state,
+        loading: false,
+        items: action.items
+      };
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
   todos

@@ -34,6 +34,12 @@ span {
   left: 50%;
   transform: translateX(-50%);
 }
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
 a {
   color: #cca9c5;
   &:active {
@@ -51,6 +57,10 @@ a {
   height: 50px;
   cursor: pointer;
 }
+.icon_big {
+  width: 100px;
+  height: 100px;
+}
 
 // app
 .app-bg {
@@ -62,9 +72,6 @@ a {
   text-align: center;
   color: #a05e93;
   margin-bottom: 10vh;
-}
-.app-enter {
-
 }
 
 //list
@@ -96,12 +103,15 @@ a {
   line-height: 50px;
   border-radius: 8px;
   overflow-y: auto;
+  &.todo-label_err {
+    background-color: #e55f9b;
+  }
 }
 .add {
   margin: 0 auto;
 }
 .add-input {
-  background-color: #dbe7b1;
+  background-color: transparent;
   width: 280px;
   height: 50px;
   line-height: 50px;

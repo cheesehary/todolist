@@ -3,8 +3,8 @@ module.exports = {
 		'./src/index.js'
 	],
 	output: {
-		path: __dirname,
-		publicPath: '/',
+		path: __dirname + '/dist',
+		// publicPath: '/',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -19,7 +19,7 @@ module.exports = {
 				test: /\.scss$/
 			},
 			{
-				loaders: ['url-loader?limit=10000'],
+				loaders: ['url-loader?limit=10000&name=img/[name].[ext]'],
 				test: /\.(jpe?g|png|gif|svg)$/
 			}
     ]

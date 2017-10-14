@@ -10,25 +10,31 @@ class AddTodo extends Component {
     super(props);
     this.state = {
       adding: false,
-      newLabel: ''
+      newLabel: '',
+      isErr: false
     }
   }
 
   revert() {
     this.setState({
       adding: false,
-      newLabel: ''
+      newLabel: '',
+      isErr: false
     });
   }
 
   onAddConfirm() {
-    this.props.confirm(this.state.newLabel);
-    this.revert();
+    if(this.state.newLabel) {
+      this.props.confirm(this.state.newLabel);
+      this.revert();
+    } else {
+      this.setState({isErr: true});
+    }
   }
 
   render() {
     return (
-      <div className="todo-label font-20 add">
+      <div className={`todo-label font-20 add ${this.state.isErr && 'todo-label_err'}`}>
         {this.state.adding ? (
           <AddInput value={this.state.newLabel}
                     onInput={e => this.setState({newLabel: e.target.value})}
@@ -39,7 +45,7 @@ class AddTodo extends Component {
           <AddBtn onAdd={() => this.setState(prevState => ({
                     adding: !prevState.adding
                   }))}
-                  isFull={Object.keys(this.props.todos).length > 4}
+                  isFull={this.props.todos.length > 4}
           />
         )}
       </div>
@@ -48,7 +54,7 @@ class AddTodo extends Component {
 }
 
 const mapStateToProps = state => ({
-  todos: state.todos
+  todos: Object.values(state.todos.items)
 });
 
 const mapDispatchToProps = dispatch => ({

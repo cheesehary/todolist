@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getTodos = state => state.todos;
+const getTodos = state => state.todos.items;
 
 export const getSequencedTodos = createSelector(
   [getTodos],
