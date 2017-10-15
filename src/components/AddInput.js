@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default ({value, onInput, onConfirm, onCancel}) => (
-  <div>
+export default ({value, onInput, onConfirm, onCancel, isErr}) => (
+  <div className={`todo-label font-20 add ${isErr && 'todo-label_err'}`}>
     <input className="add-input" type="text" value={value}
            onInput={onInput}
            ref={el => el && el.focus()}

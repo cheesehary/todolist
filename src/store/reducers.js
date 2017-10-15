@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { ADD_TODO, CHECK_TODO, DELETE_TODO, REQUEST_TODOS, RECEIVE_TODOS } from './types';
+import { ADD_TODO, CHECK_TODO, DELETE_TODO, REQUEST_TODOS, RECEIVE_TODOS, ADD_FAILURE, RESET_ERR } from './types';
 
 const todoItems = (state = {}, action) => {
   switch(action.type) {
@@ -57,6 +57,18 @@ const todos = (state = {
   }
 }
 
+const errorMsg = (state = null, action) => {
+  switch(action.type) {
+    case RESET_ERR:
+      return null;
+    case ADD_FAILURE:
+      return action.msg;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
-  todos
+  todos,
+  errorMsg
 });

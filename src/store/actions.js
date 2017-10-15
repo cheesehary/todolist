@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ADD_TODO, CHECK_TODO, DELETE_TODO, REQUEST_TODOS, RECEIVE_TODOS } from './types';
+import { ADD_TODO, CHECK_TODO, DELETE_TODO, REQUEST_TODOS, RECEIVE_TODOS, ADD_FAILURE, RESET_ERR } from './types';
 
 const addInStore = added => ({
   type: ADD_TODO,
@@ -8,11 +8,22 @@ const addInStore = added => ({
   added
 });
 
+const errorMsg = msg => ({
+  type: ADD_FAILURE,
+  msg
+});
+
 export const addTodo = label => dispatch => {
   return axios.post('/api/add-todo', {label}).then(res => {
     dispatch(addInStore(res.data.added));
+  }, err => {
+    dispatch(errorMsg(err.response.data.msg));
   });
 };
+
+export const resetErr = () => ({
+  type: RESET_ERR,
+});
 
 const checkInStore = checked => ({
   type: CHECK_TODO,
