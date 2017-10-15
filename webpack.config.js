@@ -1,10 +1,12 @@
+const htmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
 	entry: [
 		'./src/index.js'
 	],
 	output: {
 		path: __dirname + '/dist',
-		// publicPath: '/',
+		publicPath: '/',
 		filename: 'bundle.js'
 	},
 	module: {
@@ -25,6 +27,12 @@ module.exports = {
     ]
 	},
 	devtool: 'source-map',
+	plugins: [
+		new htmlWebpackPlugin({
+			template: './src/views/index.html',
+			inject: true
+		})
+	],
 	devServer: {
 		historyApiFallback: true,
 		contentBase: './src/views'
